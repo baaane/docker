@@ -9,7 +9,6 @@ RUN echo "\nupload_max_filesize = 100M" >> /etc/php/7.3/fpm/php.ini
 RUN echo "\npost_max_size = 100M" >> /etc/php/7.3/fpm/php.ini
 
 # Nginx config
-RUN rm /etc/nginx/sites-enabled/default
 ADD ./vhost-nginx.conf /etc/nginx/sites-available/
 RUN ln -s /etc/nginx/sites-available/vhost-nginx.conf /etc/nginx/sites-enabled/vhost-nginx
 
