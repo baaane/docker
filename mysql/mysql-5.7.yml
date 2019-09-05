@@ -1,0 +1,27 @@
+version: '3.2'
+
+services:
+  app:
+    container_name: mysql-server-5.7
+    image: mysql:5.7
+    volumes:
+      - /var/lib/docker-mysql/5.7:/var/lib/mysql
+    ports:
+      - 3306:3306
+    tty: true
+    stdin_open: true
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - TZ=Asia/Manila
+  phpmyadmin57:
+    container_name: compose-phpmyadmin-57
+    image: phpmyadmin/phpmyadmin
+    volumes:
+      - /sessions
+    links:
+            - app:mysql
+    tty: true
+    stdin_open: true
+    restart: 'yes'
+    environment:
+      PMA_HOST: app
