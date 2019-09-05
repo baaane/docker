@@ -1,4 +1,4 @@
-FROM arianne/apache-php:7.0
+FROM apache-php:7.0
 
 
 # Setup WordPress Unit Testing
