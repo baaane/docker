@@ -2,7 +2,7 @@ version: '3.2'
 
 services:
   app:
-    container_name: mysql-server-5.7
+    container_name: mysql-5.7
     image: mysql:5.7
     volumes:
       - /var/lib/docker-mysql/5.7:/var/lib/mysql
