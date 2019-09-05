@@ -1,27 +1,18 @@
-version: '3.2'
+version: "3.2"
 
 services:
-  app:
-    container_name: mysql-5.6
+  mysql5.6:
     image: mysql:5.6
+    container_name: mysql5.6-192.168.1.2
     volumes:
-      - /var/lib/docker-mysql/5.6:/var/lib/mysql
-    ports:
-      - 3306:3306
-    tty: true
-    stdin_open: true
+       - /var/databases/mysql/5.6:/var/lib/mysql
+    networks:
+       default:
+          ipv4_address: 192.168.1.2
+    restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - TZ=Asia/Manila
-  phpmyadmin56:
-    container_name: phpmyadmin-5.6
-    image: phpmyadmin/phpmyadmin
-    volumes:
-      - /sessions
-    links:
-      - app:mysql
-    tty: true
-    stdin_open: true
-    restart: 'yes'
-    environment:
-      PMA_HOST: app
+      MYSQL_ROOT_PASSWORD: root
+networks:
+  default:
+    external:
+      name: devnetwork
